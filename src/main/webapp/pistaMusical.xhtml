@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Ingreso de datos - Forrest M</title>
+	<h:outputStylesheet library="css" name="pistaMusical.css" />
+
+</h:head>
+
+<h:body id="body">
+	<p:growl id="messages" showDetail="true" />
+	<div id="container">
+		<h:form id="button-container" enctype="multipart/form-data">
+		
+		    Genero: <p:selectOneMenu id="genero"
+				value="#{pistaMusicalBean.genero}" required="true"
+				style="height: 40px; width: 350px">
+				<f:selectItem itemLabel="" itemValue="" />
+				<f:selectItem itemLabel="Rock" itemValue="Rock" />
+				<f:selectItem itemLabel="Pop" itemValue="Pop" />
+				<f:selectItem itemLabel="Regueton" itemValue="Regueton" />
+				<f:selectItem itemLabel="Metal" itemValue="Metal" />
+				<f:selectItem itemLabel="Salsa" itemValue="Salsa" />
+			</p:selectOneMenu>
+			<p:message for="genero" />
+			<br />
+			<br />
+			Nombre: <h:outputLabel value="" for="nombre" />
+			<h:inputText id="nombre" value="#{pistaMusicalBean.nombre}"
+				required="true" style="height: 40px; width: 350px" />
+			<p:message for="nombre" />
+			<br />
+			<br />
+			Nombre del artista: <h:outputLabel value="" for="nombre_artista" />
+			<h:inputText id="nombre_artista"
+				value="#{pistaMusicalBean.nombre_artista}" required="true"
+				style="height: 40px; width: 280px" />
+			<p:message for="nombre_artista" />
+			<br />
+			<br />
+			Seleccione un archivo musical: <p:fileUpload
+				value="#{pistaMusicalBean.file}" mode="simple"
+				dragDropSupport="false" update="messages" fileLimit="1"
+				allowTypes="/(.|/)(mp3)$/" validateContentType="true" accept=".mp3"
+				skinSimple="true" style="height: 40px; width: 220px" styleClass="rounded-button ui-button-warning"/>
+			<br />
+			<br />
+
+			<p:growl id="message" showDetail="true" />
+
+			<p:commandButton value="Registrar"
+				action="#{pistaMusicalBean.agregarPista}" update="message"
+				styleClass="rounded-button ui-button-warning" icon="pi pi-check">
+				<p:confirm header="Confirmación"
+					message="¿Estás seguro que quieres agregar esta emisora?"
+					icon="pi pi-exclamation-triangle" />
+			</p:commandButton>
+
+			<p:button outcome="listarCanciones" value="Ver canciones"
+				styleClass="rounded-button ui-button-warning" />
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				responsive="true" width="350">
+				<p:commandButton value="No" type="button"
+					styleClass="rounded-button ui-confirmdialog-no ui-button-warning" />
+				<p:commandButton value="Yes" type="button"
+					styleClass="rounded-button ui-confirmdialog-yes ui-button-warning" />
+			</p:confirmDialog>
+
+			<p:commandButton type="reset" value="Limpiar" id="button"
+				styleClass="rounded-button ui-button-warning" />
+
+			<p:button id="volver" value="Volver" outcome="index"
+				styleClass="rounded-button ui-button-warning" />
+		</h:form>
+	</div>
+</h:body>
+
+</html>

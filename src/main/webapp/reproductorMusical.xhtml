@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Reproductor de Parrilla - Forrest M</title>
+	<h:outputStylesheet library="css" name="reproductor.css" />
+</h:head>
+
+<h:body id="body">
+	<div id="container">
+		<h:form id="button-container">
+
+			<p:outputLabel value="Seleccionar fecha para reproducción:  " style="height: 40px; width: 280px; color: gold;"/> <p:selectOneMenu
+				value="#{reproductorMusicalBean.fechaProgramada}">
+
+				<f:selectItems value="#{reproductorMusicalBean.parrilla}" var="prog"
+					itemValue="#{prog.fechaProg}" itemLabel="#{prog.fechaProg}" />
+
+			</p:selectOneMenu>
+
+			<br> </br>
+
+			<p:commandButton styleClass="rounded-button ui-button-warning"
+				value="Reproducir Parrilla"
+				action="#{reproductorMusicalBean.reproducirProgramacion(reproductorMusicalBean.fechaProgramada)}" />
+
+			<br> </br>
+
+			<p:commandButton icon="pi pi-step-backward-alt"
+				styleClass="rounded-button ui-button-warning ui-button-flat"
+				value="Previous" action="#{reproductorMusicalBean.previous}" />
+
+			<p:commandButton icon="pi pi-play"
+				styleClass="rounded-button ui-button-warning ui-button-flat"
+				value="#{reproductorMusicalBean.isPlaying ? 'Pause' : 'Play/Stop'}"
+				action="#{reproductorMusicalBean.play}" />
+
+			<p:commandButton icon="pi pi-step-forward-alt"
+				styleClass="rounded-button ui-button-warning ui-button-flat"
+				value="Next" action="#{reproductorMusicalBean.next}" />
+
+			<br />
+
+			<br />
+
+			<p:button styleClass="rounded-button ui-button-warning" id="volver"
+				value="Volver al Inicio" outcome="index" />
+
+		</h:form>
+
+	</div>
+
+</h:body>
+
+
+
+</html>

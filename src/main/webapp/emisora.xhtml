@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Ingreso de datos - Forrest M</title>
+	<h:outputStylesheet library="css" name="emisora.css" />
+</h:head>
+
+<h:body id="body" >
+	<div class="card" id="container">
+		<h:form id="button-container">
+				
+			Nombre de la emisora: <h:outputLabel value="" for="nombre" />
+			<h:inputText id="nombre" value="#{emisoraBean.nombre}"
+				required="true" style="height: 40px; width: 310px" />
+			<p:message for="nombre" />
+			<br />
+			<br />
+
+			Modo de transmisión: <p:selectOneMenu id="modo_transmision"
+				value="#{emisoraBean.modo_transmision}" required="true" style="height: 40px; width: 310px" >
+				<f:selectItem itemLabel="" itemValue="" />
+				<f:selectItem itemLabel="AM" itemValue="AM" />
+				<f:selectItem itemLabel="FM" itemValue="FM" />
+				<f:selectItem itemLabel="Streaming" itemValue="Streaming" />
+			</p:selectOneMenu>
+			<p:message for="modo_transmision" />
+
+			<br />
+			<br />
+			
+			
+			Tipo de música que transmite: <p:selectOneMenu id="tipo_musica"
+				value="#{emisoraBean.tipo_musica}" required="true" style="height: 40px; width: 260px">
+				<f:selectItem itemLabel="" itemValue="" />
+				<f:selectItem itemLabel="Rock" itemValue="Rock" />
+				<f:selectItem itemLabel="Pop" itemValue="Pop" />
+				<f:selectItem itemLabel="Regueton" itemValue="Regueton" />
+				<f:selectItem itemLabel="Metal" itemValue="Metal" />
+				<f:selectItem itemLabel="Salsa" itemValue="Salsa" />
+			</p:selectOneMenu>
+			<p:message for="tipo_musica" />
+
+			<br />
+			<br />
+			<br />
+			<br />
+
+
+			<p:growl id="message" showDetail="true" />
+
+			<p:commandButton value="Registrar"
+				action="#{emisoraBean.agregarEmisora}" update="message"
+				styleClass="rounded-button ui-button-warning" icon="pi pi-check">
+				<p:confirm header="Confirmación"
+					message="¿Estás seguro que quieres agregar esta emisora?"
+					icon="pi pi-exclamation-triangle" />
+			</p:commandButton>
+
+			<p:button outcome="listar"
+				value="Emisoras Registradas"
+				styleClass="rounded-button ui-button-warning" />
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				responsive="true" width="350">
+				<p:commandButton value="No" type="button"
+					styleClass="rounded-button ui-confirmdialog-no ui-button-warning" />
+				<p:commandButton value="Yes" type="button"
+					styleClass="rounded-button ui-confirmdialog-yes ui-button-warning" />
+			</p:confirmDialog>
+
+			<p:commandButton type="reset" value="Limpiar" id="button"
+				styleClass="rounded-button ui-button-warning" />
+
+			<p:button id="volver" value="Volver" outcome="index"
+				styleClass="rounded-button ui-button-warning" />
+		</h:form>
+	</div>
+</h:body>
+
+</html>

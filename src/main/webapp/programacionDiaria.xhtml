@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Ingreso de Canciones para Parrilla - Forrest M</title>
+	<h:outputStylesheet library="css" name="programacionDiaria.css" />
+
+</h:head>
+
+<h:body id="body">
+	<div id="container">
+		<h:form id="button-container">
+
+			<p:outputLabel for="lazy" value="Programar fecha: " style="height: 40px; width: 280px"/>
+			<p:datePicker pattern="yyyy-MM-dd" id="lazy"
+				value="#{programacionDiariaBean.date2}"
+				model="#{datePickerMetadataView.modelLazy}" monthNavigator="true"
+				yearNavigator="true" style="height: 40px; width: 280px"/>
+			<br> </br>
+
+			<p:outputLabel for="lazy" value="Seleccionar canciones: " style="height: 40px; width: 200px"/> <p:selectCheckboxMenu id="parrilla"
+				value="#{programacionDiariaBean.listaCanciones}"
+				label="Parrilla Musical" multiple="true" filter="true"
+				filterMatchMode="contains" panelStyle="width:500px"
+				style="height: 40px; width: 280px">
+				<f:selectItems value="#{programacionDiariaBean.lista}" var="pista"
+					itemLabel="#{pista.nombre}" itemValue="#{pista.nombre_archivo}"
+					style="height: 40px; width: 280px" />
+			</p:selectCheckboxMenu>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+
+
+			<p:growl id="message" showDetail="true" />
+
+			<p:commandButton value="Registrar Parrilla"
+				action="#{programacionDiariaBean.guardarProgramacionDiaria}"
+				update="message" styleClass="rounded-button ui-button-warning"
+				icon="pi pi-check">
+				<p:confirm header="Confirmación"
+					message="¿Estás seguro que quieres agregar esta emisora?"
+					icon="pi pi-exclamation-triangle" />
+			</p:commandButton>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				responsive="true" width="350">
+				<p:commandButton value="No" type="button"
+					styleClass="rounded-button ui-confirmdialog-no ui-button-warning" />
+				<p:commandButton value="Yes" type="button"
+					styleClass="rounded-button ui-confirmdialog-yes ui-button-warning" />
+			</p:confirmDialog>
+			<p:button id="volver" value="Volver" outcome="index"
+				styleClass="rounded-button ui-button-warning" />
+
+		</h:form>
+	</div>
+</h:body>
+
+</html>

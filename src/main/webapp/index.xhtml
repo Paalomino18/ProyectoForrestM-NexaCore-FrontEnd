@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Forrest M</title>
+    <h:outputStylesheet library="css" name="index.css" />
+    <style>
+    button.ui-button {
+        margin-right: .5rem;
+    }
+</style>
+
+</h:head>
+<h:body id="body">
+
+
+    <div id="container">
+        <h:form id="button-container">
+            <br></br>
+
+            <div class="card">
+
+                <p:button id="emisora" value="Parámetros Emisora" outcome="emisora"
+                    styleClass="rounded-button ui-button-warning" />
+                <br> </br>
+                <p:button id="canciones" value="Parámetros Pista" outcome="pistaMusical"
+                    styleClass="rounded-button ui-button-warning" />
+                <br> </br>
+                <p:button id="progDiaria" value="Programar Parrilla"
+                    outcome="programacionDiaria" styleClass="rounded-button ui-button-warning"  />
+                <br> </br>
+
+                <p:commandButton styleClass="rounded-button ui-button-warning" action="#{reproductorMusicalBean.redireccion}"
+                    value="Reproducir Parrilla" />
+            </div>
+        </h:form>
+    </div>
+</h:body>
+
+</html>

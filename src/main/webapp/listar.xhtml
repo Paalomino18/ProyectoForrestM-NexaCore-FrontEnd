@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Emisoras - Forrest M</title>
+	<h:outputStylesheet library="css" name="listar.css" />
+</h:head>
+<h:body style="text-align:center" id="body">
+	<div id="container">
+		<p:growl id="mensajes" showDetail="true" life="2000" />
+		<p:dataTable value="#{emisoraBean.listarEmisoras}" var="emisora" id = "data-table-content">
+
+			<p:column>
+				<f:facet name="header">Nombre emisora</f:facet>
+            #{emisora.nombre}
+        </p:column>
+			<p:column>
+				<f:facet name="header">Trasmision</f:facet>
+            #{emisora.modo_transmision}
+        </p:column>
+			<p:column>
+				<f:facet name="header">Tipo</f:facet>
+            #{emisora.tipo_musica}
+        </p:column>
+
+			<f:facet name="footer">
+				<h:form id="button-container">
+					<p:button id="canciones" value="Volver" outcome="emisora"
+                    styleClass="rounded-button ui-button-warning" />
+				</h:form>
+			</f:facet>
+		</p:dataTable>
+	</div>
+</h:body>
+</html>

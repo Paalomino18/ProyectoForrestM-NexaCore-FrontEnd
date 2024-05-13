@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Canciones - Forrest M</title>
+	<h:outputStylesheet library="css" name="listarCanciones.css" />
+
+</h:head>
+<h:body style="text-align:center" id="body">
+	<div id="container">
+		<p:growl id="mensajes" showDetail="true" life="2000" />
+		<p:dataTable value="#{pistaMusicalBean.listarPistas}" var="pista" id = "data-table-content"> 
+
+			<p:column>
+				<f:facet name="header">Nombre de cancion</f:facet>
+            #{pista.nombre}
+        </p:column>
+			<p:column>
+				<f:facet name="header">Genero</f:facet>
+            #{pista.genero}
+        </p:column>
+			<p:column>
+				<f:facet name="header">Nombre del artista</f:facet>
+            #{pista.nombre_artista}
+        </p:column>
+			<p:column>
+				<f:facet name="header">Nombre del archivo</f:facet>
+            #{pista.nombre_archivo}
+        </p:column>
+
+
+
+			<f:facet name="footer">
+				<h:form>
+
+					<p:button id="canciones" value="Volver" outcome="pistaMusical"
+                    styleClass="rounded-button ui-button-warning" />
+
+				</h:form>
+			</f:facet>
+		</p:dataTable>
+	</div>
+</h:body>
+</html>
